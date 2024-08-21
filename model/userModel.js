@@ -1,0 +1,40 @@
+const mongoose = require('mongoose')
+const Schmea= mongoose.Schema
+const userSchema = new Schmea({
+    userName:{
+        type:String,
+        require:true,
+        unique:true
+    },
+    email:{
+        type:String,
+        require:true,  
+    },
+    height:{
+        type:String,
+        require:true,  
+    }
+   ,
+    weight:{
+        type:String,
+        require:true
+    },
+    age:{
+        type:String,
+        require:true 
+    }
+    ,
+    gender:{
+        type:String,
+        require:true 
+    },
+    bmi:{
+        type:String,
+        require:true 
+    },
+    password:{
+        type:String,
+        require:true 
+    }
+},{timestamps:true})
+module.exports=mongoose.model('User',userSchema)
