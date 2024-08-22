@@ -5,7 +5,7 @@ const port = 3000;
 const route_Admin= require('./router/adminRouter.js')
 const userRouter=require('./router/userRouter')
 const admin =require('./model/adminModel.js')
-
+const exerciseRouter=require('./router/exercise.js')
 const Exercise =require('./model/Exercise.js')
 
 const cors =require('cors')
@@ -14,6 +14,7 @@ app.use(cors({origin:'*'}))
 app.use(express.json())
 app.use('/api',route_Admin);
 app.use('/user',userRouter);
+app.use('/exercise',exerciseRouter)
  
 mongoose.connect('mongodb+srv://firas:UWJVX9NQBmiKxbZB@cluster0.vlq7rvy.mongodb.net/new_app?retryWrites=true').then(()=>{
 
