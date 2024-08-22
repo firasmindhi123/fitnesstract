@@ -18,7 +18,7 @@ function tokengenerated(id){
 exports.signup= async(req,res,next)=>{
         try{
           
-          const username=req.body.username
+          const username=req.body.userName
           const email=req.body.email
           const weight=req.body.weight
           const height=req.body.height
@@ -33,7 +33,7 @@ exports.signup= async(req,res,next)=>{
             const findUser = await User.findOne({email:email})
             if(findUser)
             {
-              return res.status(503).json({err:"user exist"})
+              return res.status(403).json({err:"user exist"})
             }
           bcrypt.hash(password,10,async(err,hash)=>{
             if(err)
@@ -84,4 +84,17 @@ exports.login =async(req,res,next)=>{
         res.status(500).json({message:'internal problem'})
     }
     
+}
+exports.userDetail =async(req,res)=>{
+  try{
+    res.status(200).json({data:req.user})
+
+  }
+  catch(err)
+
+  {
+    res.status(404).json({message:'data not found'})
+  }
+    
+  
 }

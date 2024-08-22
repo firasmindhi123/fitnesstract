@@ -53,7 +53,7 @@ exports.signup= async(req,res,next)=>{
 
 exports.login =async(req,res,next)=>{
   try{
-    const userId =req.body.userId
+    const userId =req.body.AdminId
     const password=req.body.password
     const findUser = await User.findOne({AdminId:userId})
     if(IsStringInvalid(userId)||IsStringInvalid(password))
@@ -79,4 +79,14 @@ catch(err){
 }
 
   }
-    
+  exports.aminDetail =async(req,res)=>{
+    try{
+      res.status(200).json({data:req.admin})
+  
+    }
+    catch(err)
+  
+    {
+      res.status(404).json({message:'data not found'})
+    }
+  }
