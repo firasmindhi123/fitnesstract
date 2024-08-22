@@ -15,6 +15,6 @@ exports.authenticate=async(req,res,next)=>{
        }
     catch(err)
     {
-        return res.status(402).json({success:false})
+        return res.status(402).json({success:false,message:'pls login first'})
     }
 }
