@@ -98,3 +98,7 @@ exports.userDetail =async(req,res)=>{
     
   
 }
+// exports.updateUser= async(req,res)=>{
+//   weif
+//   User.updateOne({_id:req.user._id},{})
+// }
