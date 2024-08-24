@@ -10,8 +10,7 @@ const Exercise =require('./model/Exercise.js')
 
 const cors =require('cors')
 const app = express();
-app.use(cors({ origin: 'https://fitnesstract.vercel.app',
-  methods: 'GET, HEAD, PUT, PATCH, POST, DELETE'}))
+app.use(cors({credentials:true,origin:"*",methods:"POST,GET,DELETE"}))
 app.use(express.json())
 app.use('/api',route_Admin);
 app.use('/user',userRouter);
