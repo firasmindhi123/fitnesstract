@@ -36,13 +36,15 @@ exports.signup= async(req,res,next)=>{
               console.log(err)
               res.status(504).json({message:'unsuccesul'})
             }
-           
+            else{
               const  user=new User({AdminId:userId, adminName:name,password:hash})
-              const data= await user.save()
+               const data=await user.save()
+               res.status(201).json({message:'success123',data})
+            }
 
             
           })
-           res.status(201).json({message:'success123' ,data})
+          
       
         }
         catch(err){
