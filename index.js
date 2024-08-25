@@ -14,7 +14,8 @@ const app = express();
 //   res.header('Access-Control-Allow-Origin', '*');
 //   next();
 // });
- app.use(cors({origin:"https://fitnesstract.vercel.app"}))
+
+ app.use(cors({origin:"*"}))
 app.use(express.json())
 app.use('/api',route_Admin);
 app.use('/user',userRouter);
