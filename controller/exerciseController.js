@@ -3,7 +3,7 @@ exports.Exercise=async(req,res)=>{
     try{
         const{exerciseName,description,level,repeat,duration} =req.body
          const findexercise =await Exercise.find({exerciseName:exerciseName})
-         if(findexercise){
+         if(findexercise.length>0){
             res.status(403).json({message:'exercise exists'})
          }
         const exercise = await Exercise.create({exerciseName,description,level,repeat,duration,userId:req.admin._id})
