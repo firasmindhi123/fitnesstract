@@ -28,7 +28,7 @@ exports.signup= async(req,res,next)=>{
             const findUser = await User.findOne({adminId:userId})
             if(findUser)
             {
-              return res.status(503).json({err:"user exist"})
+              return res.status(403).json({err:"user exist"})
             }
           bcrypt.hash(password,10,async(err,hash)=>{
             if(err)
@@ -56,7 +56,7 @@ exports.login =async(req,res,next)=>{
   try{
     const userId =req.body.AdminId
     const password=req.body.password
-    const findUser = await User.findOne({AdminId:userId})
+    const findUser = await User.findOne({adminId:userId})
     if(IsStringInvalid(userId)||IsStringInvalid(password))
       {
           return res.status(400).json({err:"userId or password is missing"})
