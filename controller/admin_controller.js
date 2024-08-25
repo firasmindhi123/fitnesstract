@@ -23,9 +23,9 @@ exports.signup= async(req,res,next)=>{
           const name =req.body.name
           if(IsStringInvalid(userId)||IsStringInvalid(password)|| IsStringInvalid(name))
             {
-                return res.status(400).json({err:"userId or passwor is missing"})
+                return res.status(403).json({err:"userId or passwor is missing"})
             }
-            const findUser = await User.findOne({AdminId:userId})
+            const findUser = await User.findOne({adminId:userId})
             if(findUser)
             {
               return res.status(503).json({err:"user exist"})
