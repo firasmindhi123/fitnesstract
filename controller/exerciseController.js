@@ -1,7 +1,7 @@
 const Exercise = require('../model/Exercise')
 exports.Exercise=async(req,res)=>{
     try{
-        const{exerciseName,description,level,repeat,duration} =req.body
+        const{exerciseName,exerciseType,description,level,repeat,duration} =req.body
          const findexercise =await Exercise.find({'exerciseName':exerciseName})
          if(findexercise.length>0){
             res.status(403).json({message:'exercise exists',findexercise})
