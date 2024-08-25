@@ -2,13 +2,13 @@ const Exercise = require('../model/Exercise')
 exports.Exercise=async(req,res)=>{
     try{
         const{exerciseName,description,level,repeat,duration} =req.body
-         const findexercise =await Exercise.find({exerciseName:exerciseName})
+         const findexercise =await Exercise.find({'exerciseName':exerciseName})
          if(findexercise.length>0){
             res.status(403).json({message:'exercise exists',findexercise})
          }
-        const exercise = await Exercise.create({exerciseName,description,level,repeat,duration,userId:req.admin._id})
-       
-        res.status(201).json({message:'succeful', exercise})
+        const exercise = new Exercise({exerciseName,description,level,repeat,duration,userId:req.admin._id})
+        const data=await exercise.save()
+        res.status(201).json({message:'succeful', data})
     
        }
        catch(err){
