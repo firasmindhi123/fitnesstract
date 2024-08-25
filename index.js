@@ -11,7 +11,12 @@ const Exercise =require('./model/Exercise.js')
 const cors =require('cors')
 const app = express();
 
- app.use(cors())
+ app.use(cors({
+  origin: '*', // Adjust to the specific origins if needed
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}))
 app.use(express.json())
 app.use('/api',route_Admin);
 app.use('/user',userRouter);
