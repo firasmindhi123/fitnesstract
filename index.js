@@ -10,11 +10,11 @@ const Exercise =require('./model/Exercise.js')
 
 const cors =require('cors')
 const app = express();
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  next();
-});
-// app.use(cors({credentials:true,origin:"https://fitnesstract.vercel.app"}))
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   next();
+// });
+ app.use(cors({origin:"https://fitnesstract.vercel.app"}))
 app.use(express.json())
 app.use('/api',route_Admin);
 app.use('/user',userRouter);
