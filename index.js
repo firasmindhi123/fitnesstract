@@ -10,7 +10,7 @@ const Exercise =require('./model/Exercise.js')
 
 const cors =require('cors')
 const app = express();
-app.use(cors({credentials:true,origin:true}))
+app.use(cors({credentials:true,origin:true,methods:"POST,GET,DELETE"}))
 app.use(express.json())
 app.use('/api',route_Admin);
 app.use('/user',userRouter);
