@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schmea= mongoose.Schema
 const userSchema = new Schmea({
-    userName:{
+    adminId:{
         type:String,
         require:true,
         unique:true
