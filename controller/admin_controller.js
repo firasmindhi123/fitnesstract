@@ -37,7 +37,7 @@ exports.signup= async(req,res,next)=>{
               res.status(504).json({message:'unsuccesul'})
             }
             else{
-              const  user=new User({AdminId:userId, adminName:name,password:hash})
+              const  user=new User({adminId:userId, adminName:name,password:hash})
                const data=await user.save()
                res.status(201).json({message:'success123',data})
             }
