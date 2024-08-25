@@ -6,7 +6,7 @@ exports.Exercise=async(req,res)=>{
          if(findexercise.length>0){
             res.status(403).json({message:'exercise exists',findexercise})
          }
-        const exercise = new Exercise({exerciseName,description,level,repeat,duration,userId:req.admin._id})
+        const exercise = new Exercise({exerciseName,Type,description,level,repeat,duration,userId:req.admin._id})
         const data=await exercise.save()
         res.status(201).json({message:'succeful', data})
     
@@ -29,7 +29,7 @@ exports.Exercise=async(req,res)=>{
         }
     exports.updateExercise=async(req,res)=>{
       try{
-        const{exerciseName,description,level,repeat,duration} =req.body
+        const{exerciseName,Type,description,level,repeat,duration} =req.body
         const exerciseId =req.params.id
         await Exercise.updateOne({_id:exerciseId},req.body)
    

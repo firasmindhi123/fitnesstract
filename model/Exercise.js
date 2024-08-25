@@ -6,6 +6,10 @@ const exerciseSchema = new Schmea({
         type:String,
         require:true
     },
+    Type:{
+        type:String,
+        require:true
+    },
     description:{
         type:String,
         require:true   
