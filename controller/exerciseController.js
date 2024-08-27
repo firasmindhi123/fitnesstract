@@ -39,6 +39,18 @@ exports.Exercise=async(req,res)=>{
         res.status(502).json({message:'something went wrong'})
       }
        
+    }   
+    exports.getExercise=async(req,res)=>{
+      try{
+        const exerciseId =req.params.id
+        const data=await Exercise.find({_id:exerciseId})
+   
+     res.status(200).json({succsess:'true',data})
+      }
+      catch(err){
+        res.status(502).json({message:'something went wrong'})
+      }
+       
     }    
     exports.deleteExercise=async(req,res)=>{
       try{
