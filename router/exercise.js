@@ -1,10 +1,10 @@
 const express =require('express')
 const router =express.Router()
-//const exercise =require('../controller/exerciseController')
 const exerciseController=require('../controller/exerciseController')
 router.get('/exerciseDetail/:id',exerciseController.getExercise)
 router.get('/detail',exerciseController.getexercises)
-router.post('/update/:id',exerciseController.updateExercise)
-router.delete('/delete/:id',exerciseController.deleteExercise)
+router.post('/update/:id',authentication.authenticate,exerciseController.updateExercise)
+router.delete('/delete/:id',authentication.authenticate,exerciseController.deleteExercise)
+
 
 module.exports =router
