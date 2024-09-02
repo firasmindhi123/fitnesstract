@@ -6,4 +6,5 @@ const exerciseController=require('../controller/exerciseController')
 router.post('/signup',user_controller.signup)
 router.post('/login',user_controller.login)
 router.get('/userDetail',autentication.authenticate, user_controller.userDetail)
+router.post('/changePassword',autentication.authenticate,user_controller.passwordChange)
 module.exports =router

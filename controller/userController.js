@@ -98,7 +98,27 @@ exports.userDetail =async(req,res)=>{
     
   
 }
-// exports.updateUser= async(req,res)=>{
-//   weif
-//   User.updateOne({_id:req.user._id},{})
-// }
+exports.passwordChange=async(req,res,next)=>{
+  try{
+  const {oldPassword, newPassword } = req.body;
+
+  if ( !oldPassword || !newPassword) {
+    return res.status(400).json({ message: 'old password, and new password are required.' });
+  }
+
+const isMatch = await bcrypt.compare(oldPassword, req.user.password);
+  if (!isMatch) {
+    return res.status(401).json({ message: 'Old password is incorrect.'  });
+  }
+
+  const newHash = await bcrypt.hash(newPassword, 10);
+  const user =  await User.findById(req.user._id)
+  user.password =newHash
+   await user.save()   
+  res.status(200).json({ message: 'Password changed successfully.' });
+}
+catch(err)
+{
+  res.status(500).json({status:'failed',error:err})
+}
+}

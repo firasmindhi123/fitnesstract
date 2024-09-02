@@ -106,9 +106,9 @@ catch(err){
     }
   
     const newHash = await bcrypt.hash(newPassword, 10);
-       User.password = newHash
-       await User.save()
-     
+    const user =  await User.findById(req.admin._id)
+    user.password =newHash
+     await user.save()   
     res.status(200).json({ message: 'Password changed successfully.' });
   }
   catch(err)
