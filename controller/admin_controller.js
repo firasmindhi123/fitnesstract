@@ -63,12 +63,13 @@ exports.login =async(req,res,next)=>{
       }
       if(!findUser)
       {
-        return res.status(502).json({err:"user is not exists"})
+        return res.status(400).json({err:"user is not exists"})
       }
       bcrypt.compare(password,findUser.password,async(err,result)=>{
     if(err)
     {
-        console.log(err)
+      return res.status(400).json({err:"passwordis not matching"})
+  
     }
     else{
         res.status(201).json({message:'login succesful',token:tokengenerated(findUser._id)})
@@ -105,7 +106,8 @@ catch(err){
     }
   
     const newHash = await bcrypt.hash(newPassword, 10);
-      await User.replaceOne({_id:req.admin._id},{password:newHash})
+       User.password = newHash
+       await User.save()
      
     res.status(200).json({ message: 'Password changed successfully.' });
   }
