@@ -91,3 +91,26 @@ catch(err){
       res.status(404).json({message:'data not found'})
     }
   }
+  exports.changePassword=async(req,res,next)=>{
+    try{
+    const {oldPassword, newPassword } = req.body;
+  
+    if ( !oldPassword || !newPassword) {
+      return res.status(400).json({ message: 'old password, and new password are required.' });
+    }
+  
+  const isMatch = await bcrypt.compare(oldPassword, req.admin.password);
+    if (!isMatch) {
+      return res.status(401).json({ message: 'Old password is incorrect.'  });
+    }
+  
+    const newHash = await bcrypt.hash(newPassword, 10);
+      await User.replaceOne({_id:req.admin._id},{password:newHash})
+     
+    res.status(200).json({ message: 'Password changed successfully.' });
+  }
+  catch(err)
+  {
+    res.status(500).json({status:'failed',error:err})
+  }
+  }
